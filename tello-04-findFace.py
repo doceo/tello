@@ -8,7 +8,7 @@ myDrone = intializeTello()
 while True:
  
     ## STEP 1
-    img = telloGetFrame(myDrone)
+    img = telloGetFrame(myDrone,w,h)
  
     ## STEP 2
     img, info = findFace(img)

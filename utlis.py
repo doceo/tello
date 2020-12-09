@@ -1,3 +1,6 @@
+# https://www.murtazahassan.com/courses/drone-programming/
+
+
 from djitellopy import Tello
 import cv2
 import numpy as np
@@ -25,9 +28,9 @@ def telloGetFrame(myDrone,w=360,h=240):
 
 
 def findFace(img):
-    faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = faceCascade.detectMultiScale(imgGray, 1.1, 4)
+    faces = faceCascade.detectMultiScale(imgGray, 1.2, 4)
 
     myFacesListC = []
     myFaceListArea = []
@@ -72,7 +75,7 @@ def trackFace(myDrone,c,w,pid,pError):
     
     if myDrone.send_rc_control:
         myDrone.send_rc_control(myDrone.left_right_velocity,
-        myDrone.for_back_velocity,
-        myDrone.up_down_velocity,
-        myDrone.yaw_velocity)
+                                myDrone.for_back_velocity,
+                                myDrone.up_down_velocity,
+                                myDrone.yaw_velocity)
     return error

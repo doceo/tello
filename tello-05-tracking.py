@@ -1,39 +1,29 @@
-
 from utlis import *
-
+import cv2
+ 
 w,h = 360,240
-pid = [0.5,0.5,0]
+pid = [0.4,0.4,0]
 pError = 0
-startCounter = 0  # for no Fligth = 1 per test senza takeoff
-
+startCounter = 0  # for no Flight 1   - for flight 0
+ 
+ 
 myDrone = intializeTello()
-
+ 
 while True:
  
-    ## flitght
-
+    ## Flight
     if startCounter == 0:
         myDrone.takeoff()
-        startCounter = 1 
-
-    ## STEP 1
-    img = telloGetFrame(myDrone)
+        startCounter = 1
  
-    ## STEP 2
+    ## Step 1
+    img = telloGetFrame(myDrone,w,h)
+    ## Step 2
     img, info = findFace(img)
- 
-    ## STEP 3  
-
+    ## Step 3
     pError = trackFace(myDrone,info,w,pid,pError)
-
-    print(info[0][0])
-
-    # DISPLAY IMAGE
-    cv2.imshow("MyResult", img)
- 
-    # WAIT FOR THE 'Q' BUTTON TO STOP
-    if cv2.waitKey(1) & 0xFF == ord('q'): # replace the 'and' with '&amp;' 
+    #print(info[0][0])
+    cv2.imshow('Image',img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         myDrone.land()
         break
-
-

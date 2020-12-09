@@ -40,7 +40,7 @@ frameHeight = height
  
  
 global imgContour
-global dir;
+global dir
 def empty(a):
     pass
  

@@ -1,7 +1,7 @@
 
 from utlis import *
 
-w,h = 360,240
+w,h = 800,600
 
 myDrone = intializeTello()
 

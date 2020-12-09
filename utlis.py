@@ -50,12 +50,12 @@ def findFace(img):
     else:
         return img, [[0,0],0]
 
-def trackFace(myDrone,c,w,pid,pError):
-    print(c)
+def trackFace(myDrone,info,w,pid,pError):
+#   print(c)
 
     ## video
- #  error = info[0][0] - w//2
- #  speed = pid[0]*error + pid[1]*(error-pError) 
+    error = info[0][0] - w//2
+    speed = pid[0]*error + pid[1]*(error-pError) 
 
     ## PID
     error = info[0][0] - w//2    # Current Value - Target Value

@@ -5,16 +5,21 @@
 import speech_recognition as sr
 from PIL import Image, ImageTk
 
+import cv2
+import numpy as np
+
+from threading import Thread
 
 def ascolta():
 
     recognizer_instance = sr.Recognizer() # Crea una istanza del recognizer
 
     with sr.Microphone() as source:
+        immagine(True)
         recognizer_instance.adjust_for_ambient_noise(source)
-        print("Sono in ascolto... parla pure!")
         audio = recognizer_instance.listen(source)
         print("Ok! sto ora elaborando il messaggio!")
+        immagine(False)
     try:
         text = recognizer_instance.recognize_google(audio, language="it-IT")
         print("Google ha capito: \n", text)
@@ -24,5 +29,14 @@ def ascolta():
         return e
 
 
-#def parla():
+def immagine(colore):
     
+    cv2.destroyWindow('Image')
+    if(colore):
+        img = cv2.imread('parla.jpg')
+    else:
+        img = cv2.imread('aspetta.jpg')
+
+    cv2.imshow('image',img)
+    cv2.waitKey(0)
+

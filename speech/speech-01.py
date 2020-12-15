@@ -19,6 +19,7 @@ while True:
     #   my_drone.flip("r")
     #   my_drone.land()
 
-    if (istruzione == 'scendi') & 0xFF == ord('q'): # replace the 'and' with '&amp;' 
+    if (istruzione == 'scendi') & 0xFF == ord('q'): 
         my_drone.land()
+        cv2.destroyWindow('Image')
         break

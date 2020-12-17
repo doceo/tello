@@ -15,11 +15,12 @@ def ascolta():
     recognizer_instance = sr.Recognizer() # Crea una istanza del recognizer
 
     with sr.Microphone() as source:
-        immagine(True)
+        #immagine(True)
+        print("ti ascolto")
         recognizer_instance.adjust_for_ambient_noise(source)
         audio = recognizer_instance.listen(source)
         print("Ok! sto ora elaborando il messaggio!")
-        immagine(False)
+        #immagine(False)
     try:
         text = recognizer_instance.recognize_google(audio, language="it-IT")
         print("Google ha capito: \n", text)

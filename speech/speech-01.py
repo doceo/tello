@@ -1,13 +1,14 @@
 from easytello import tello
 from functions import *
-
+from recognize import *
 
 my_drone = tello.Tello()
 
 
 while True:
-    istruzione = ascolta()
+#    inAscolto = recognize("speech#1",2000)
 
+    istruzione = ascolta()
     if (istruzione == 'vola'):
         my_drone.takeoff()
 

@@ -5,6 +5,9 @@ from djitellopy import Tello
 import cv2
 import numpy as np
 
+import qrcode
+from PIL import Image
+
 def intializeTello():
     # CONNECT TO TELLO
     myDrone = Tello()
@@ -79,3 +82,14 @@ def trackFace(myDrone,info,w,pid,pError):
                                 myDrone.up_down_velocity,
                                 myDrone.yaw_velocity)
     return error
+
+
+## QRcode
+
+def decodeQr(str):
+    img = cv2.imread(str)
+    det = cv2.QRCodeDetector()
+    retval, points, straight_qrcode = det.detectAndDecode(img)
+    
+    print(retval)
+ 

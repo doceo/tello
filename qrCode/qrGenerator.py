@@ -1,3 +1,5 @@
+## https://pypi.org/project/qrcode/ 
+
 import cv2 as cv
 import numpy as np
 
@@ -7,8 +9,6 @@ import numpy as np
 import qrcode
 from PIL import Image
 
-img = qrcode.make('Your input text')
-
 qr = qrcode.QRCode(
     version=1,
     error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -16,7 +16,7 @@ qr = qrcode.QRCode(
     border=4,
 )
 
-qr.add_data('vola')
+qr.add_data('decolla')
 qr.make(fit=True)
 img = qr.make_image(fill_color="black", back_color="white").convert('RGB')
 

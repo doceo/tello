@@ -1,4 +1,10 @@
 
+import pyzbar.pyzbar as pyzbar
+import numpy as np
+import cv2
+import time
+
+
 from utlis import *
 
 w,h = 360,240
@@ -8,28 +14,16 @@ myDrone = intializeTello()
 while True:
  
     ## STEP 1
-    img = telloGetFrame(myDrone)
-    
-    pil = Image.open(stream)
+    im = telloGetFrame(myDrone)
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 
-    # inizializza lo scan dell'immagine
-    scanner = zbar.ImageScanner()
 
-    # configura il lettore
-    scanner.parse_config('enable')
-
-    pil = pil.convert('L')
-    width, height = pil.size
-    raw = pil.tostring()
-
-    # wrap dati della immagine
-    image = zbar.Image(width, height, 'Y800', raw)
-
-    # cerca un QRcode
-    scanner.scan(image)
+    print(type(im))
+    decodedObjects = decode(im)
+    display(im, decodedObjects)
 
     # DISPLAY IMAGE
-    cv2.imshow("MyResult", img)
+    cv2.imshow("MyResult", im)
  
     # WAIT FOR THE 'Q' BUTTON TO STOP
     if cv2.waitKey(1) & 0xFF == ord('q'): # replace the 'and' with '&amp;' 
